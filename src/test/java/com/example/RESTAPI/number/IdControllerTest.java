@@ -1,5 +1,6 @@
 package com.example.RESTAPI.number;
 
+import com.example.RESTAPI.user.UserResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +24,16 @@ public class IdControllerTest {
 
     @MockBean
     private Random stubRandom;
+
+    @Test
+    void success_with_getUser() {
+        UserResponse result
+                = restTemplate.getForObject("/user", UserResponse.class);
+        // Assert
+        assertEquals("Fake name", result.getName());
+        assertEquals("Fake username", result.getUsername());
+    }
+
 
     @Test
     void generateId() {
